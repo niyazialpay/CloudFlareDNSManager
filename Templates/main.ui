@@ -560,6 +560,10 @@ QTextBrowser#textBrowserWhoisNameservers, QTextBrowser#textBrowserWhoisStatus{
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
+     <attribute name="icon">
+      <iconset>
+       <normaloff>img/dns.png</normaloff>img/dns.png</iconset>
+     </attribute>
      <attribute name="title">
       <string>DNS Query</string>
      </attribute>
@@ -660,6 +664,10 @@ QTextBrowser#textBrowserWhoisNameservers, QTextBrowser#textBrowserWhoisStatus{
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
+     <attribute name="icon">
+      <iconset>
+       <normaloff>img/ip-replace.png</normaloff>img/ip-replace.png</iconset>
+     </attribute>
      <attribute name="title">
       <string>DNS IP Replacer</string>
      </attribute>
@@ -781,6 +789,10 @@ QTextBrowser#textBrowserWhoisNameservers, QTextBrowser#textBrowserWhoisStatus{
      </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
+     <attribute name="icon">
+      <iconset>
+       <normaloff>img/whois.png</normaloff>img/whois.png</iconset>
+     </attribute>
      <attribute name="title">
       <string>Whois Query</string>
      </attribute>
@@ -841,6 +853,10 @@ QTextBrowser#textBrowserWhoisNameservers, QTextBrowser#textBrowserWhoisStatus{
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
+     <attribute name="icon">
+      <iconset>
+       <normaloff>img/settings.png</normaloff>img/settings.png</iconset>
+     </attribute>
      <attribute name="title">
       <string>Settings</string>
      </attribute>
@@ -956,6 +972,9 @@ QTextBrowser#textBrowserWhoisNameservers, QTextBrowser#textBrowserWhoisStatus{
        </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
        </property>
        <attribute name="horizontalHeaderDefaultSectionSize">
         <number>125</number>
