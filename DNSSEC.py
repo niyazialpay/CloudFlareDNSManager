@@ -1,4 +1,4 @@
-from PyQt6 import uic, QtWidgets
+from PyQt6 import uic
 from PyQt6.QtWidgets import QDialog
 from DB import *
 import cf

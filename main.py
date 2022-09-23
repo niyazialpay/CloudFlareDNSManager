@@ -52,9 +52,6 @@ class Ui(QtWidgets.QMainWindow):
         self.delete_details_menu_action = self.details_menu.addAction("Delete")
         self.delete_details_menu_action.setIcon(self.delete_icon)
 
-        if self.__cf.cf is None:
-            self.tabWidget.setCurrentIndex(4)
-
     def setupUi(self):
         self.btnReplace.clicked.connect(self.btnReplace_click)
 
@@ -171,7 +168,7 @@ class Ui(QtWidgets.QMainWindow):
         w = DomainDetails()
         w.exec()
 
-    def domainDNSSEC(self, domain_id=None):
+    def showDNSSEC(self, domain_id=None):
         from DNSSEC import DNSSEC
         if domain_id is not None:
             self.__db.insert_tmp_data(domain_id)
@@ -238,11 +235,11 @@ class Ui(QtWidgets.QMainWindow):
         txtEmail = self.txtEmail.text()
         if txtEmail != "" or txtKey != "":
             if self.__db.insert_api(txtKey, txtEmail):
-                self.messageBox("API Key and Email saved successfully", "Success", "Information")
+                self.close()
             else:
-                self.messageBox('Something went wrong!', 'Warning', 'Warning')
+                Ui().messageBox('Something went wrong!', 'Warning', 'Warning')
         else:
-            self.messageBox('Please fill in all fields', 'Warning', 'Warning')
+            Ui().messageBox('Please fill in all fields', 'Warning', 'Warning')
 
     def replace_run(self):
         old_ip_address = regex.string(self.txtOldIP.text())
@@ -348,8 +345,7 @@ class Ui(QtWidgets.QMainWindow):
                 self.domainDetails()
 
             if action == self.details_column_dnssec_action:
-                self.domainDNSSEC()
-
+                self.showDNSSEC()
         except Exception as e:
             print(e)
             self.messageBox('You must select a valid row!', 'Warning', 'Warning')
