@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>305</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>305</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>305</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>DNSSEC</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>img/icon.ico</normaloff>img/icon.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color:rgb(47, 47, 47);
+color:rgb(200, 200, 200)
+}
+QTabWidget::pane {
+	border: 1px solid rgb(128, 128, 128);
+	border-radius: 3px;
+}
+QTabBar::tab 
+{
+    background: #48555E;
+    color: white;   
+	padding:5px;
+    border: 1px solid #000;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+QTabBar::tab:selected, 
+QTabBar::tab:hover 
+{
+    border-top-color: #1D2A32;
+    border-color: #40494E;
+    color: black;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #C1D8E8, stop: 1 #F0F5F8); 
+}
+QLineEdit, QComboBox, QTextEdit,QPlainTextEdit{
+	background-color: rgb(85,85,85);
+	border-color: rgb(0, 0, 0);
+	border-width : 1px;
+	border-style:inset;
+	padding: 5px;
+	border-radius:3px;
+}
+QPushButton{
+	background:rgb(102, 102, 102);
+	color:rgb(255, 255, 255);
+	border-radius:3px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-right:10px;
+	padding-left:10px;
+	border-color: rgb(0, 0, 0);
+	border-width : 1px;
+	border-style:inset;
+}
+QPushButton:hover{
+	background-color:rgb(128, 128, 128);
+}
+QPushButton:pressed{
+	background-color:#A4A4A4;
+	color:#000
+}
+QLabel{
+	border:0px;
+}
+QCheckBox{
+	border:0px;
+}
+QTextBrowser{
+	color: rgb(230, 230, 230);
+	padding:10px;
+	background-image: url(template/img/logo.png);
+	background-repeat: no-repeat;
+  	background-attachment: fixed;
+ 	background-position: center;
+}
+QGroupBox {
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-top: 1ex; /* leave space at the top for the title */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0 5px;
+}
+QGroupBox::indicator {
+    width: 13px;
+    height: 13px;
+}
+QGroupBox#groupBoxNotifications::indicator:unchecked, QGroupBox#groupBoxNotifications::indicator:checked {
+	image: url(template/img/notification.png);
+}
+QGroupBox#groupBoxSettings::indicator:unchecked, QGroupBox#groupBoxSettings::indicator:checked {
+	image: url(template/img/settings.png);
+}
+
+QGroupBox#groupBoxBrowsers::indicator:unchecked, QGroupBox#groupBoxBrowsers::indicator:checked {
+	image: url(template/img/browser.png);
+}
+
+QGroupBox#groupBoxTelegram::indicator:unchecked, QGroupBox#groupBoxTelegram::indicator:checked{
+	image: url(template/img/telegram.png);
+}
+
+QGroupBox#groupBoxAccountSettings::indicator:unchecked, QGroupBox#groupBoxAccountSettings::indicator:checked{
+	image: url(template/img/user.png);
+}
+
+QMenuBar {
+    background-color: rgb(40,40,40);
+}
+QMenuBar::item {
+    padding: 4px 8px;
+    background: transparent;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(60,60,60);
+	color:rgb(200,200,200);
+}
+
+QMenuBar::item:pressed {
+    background: #888888;
+	color: #000;
+}
+QHeaderView::section, QHeaderView{
+	background: #48555E;
+	border: 0px;
+	padding-left:3px;
+}
+QHeaderView::item{
+	border: 0px;
+}
+QTableCornerButton::section {
+    background: #48555E;
+}
+QTableWidget{
+	border: 1px solid gray;
+	border-radius:5px;
+}
+QTableWidget#tableWidgetPlanetList{
+	border: 2px solid gray;
+	border-radius:5px;
+}
+</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>630</width>
+     <height>284</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>DNSSEC</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>66</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DS Record</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEditDSRecord">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>20</y>
+      <width>518</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>596</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>66</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Digest</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditDigest">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>90</y>
+      <width>518</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>596</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>66</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Digest Type</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditDigestType">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>140</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>140</y>
+      <width>3</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>140</y>
+      <width>55</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Agorithm</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditAlgorithm">
+    <property name="geometry">
+     <rect>
+      <x>268</x>
+      <y>140</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>337</x>
+      <y>140</y>
+      <width>3</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>347</x>
+      <y>140</y>
+      <width>52</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Key Tag</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditKeyTag">
+    <property name="geometry">
+     <rect>
+      <x>411</x>
+      <y>140</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_5">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>140</y>
+      <width>3</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>140</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Flags</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditFlags">
+    <property name="geometry">
+     <rect>
+      <x>547</x>
+      <y>140</y>
+      <width>60</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>596</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>66</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Public Key</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditPublicKey">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>190</y>
+      <width>518</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>596</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>66</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Key Type</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditKeyType">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>240</y>
+      <width>150</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonEnableDisable">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>237</y>
+      <width>100</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enable/Disable</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditID">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>240</y>
+      <width>51</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

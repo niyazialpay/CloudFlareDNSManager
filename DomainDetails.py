@@ -2,7 +2,6 @@ from PyQt6 import uic, QtWidgets
 from PyQt6.QtWidgets import QDialog
 from DB import *
 import cf
-from main import Ui
 
 
 class DomainDetails(QDialog):

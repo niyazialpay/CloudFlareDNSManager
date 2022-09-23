@@ -25,6 +25,7 @@ class Ui(QtWidgets.QMainWindow):
         self.copy_icon = QtGui.QIcon('Templates/img/copy.png')
         self.details_icon = QtGui.QIcon('Templates/img/details.png')
         self.whois_icon = QtGui.QIcon('Templates/img/whois.png')
+        self.dnssec_icon = QtGui.QIcon('Templates/img/dnssec.png')
 
         self.menu = QtWidgets.QMenu()
 
@@ -45,8 +46,14 @@ class Ui(QtWidgets.QMainWindow):
         self.details_column_whois_action = self.details_menu.addAction("Whois")
         self.details_column_whois_action.setIcon(self.whois_icon)
 
+        self.details_column_dnssec_action = self.details_menu.addAction("DNSSEC")
+        self.details_column_dnssec_action.setIcon(self.dnssec_icon)
+
         self.delete_details_menu_action = self.details_menu.addAction("Delete")
         self.delete_details_menu_action.setIcon(self.delete_icon)
+
+        if self.__cf.cf is None:
+            self.tabWidget.setCurrentIndex(4)
 
     def setupUi(self):
         self.btnReplace.clicked.connect(self.btnReplace_click)
@@ -164,6 +171,16 @@ class Ui(QtWidgets.QMainWindow):
         w = DomainDetails()
         w.exec()
 
+    def domainDNSSEC(self, domain_id=None):
+        from DNSSEC import DNSSEC
+        if domain_id is not None:
+            self.__db.insert_tmp_data(domain_id)
+        else:
+            self.__db.insert_tmp_data(
+                self.tableWidgetDomainList.item(self.tableWidgetDomainList.currentRow(), 1).text())
+        w = DNSSEC()
+        w.exec()
+
     def searchRecord_click(self):
         threading.Thread(target=self.listDnsRecords()).start()
 
@@ -221,11 +238,11 @@ class Ui(QtWidgets.QMainWindow):
         txtEmail = self.txtEmail.text()
         if txtEmail != "" or txtKey != "":
             if self.__db.insert_api(txtKey, txtEmail):
-                self.close()
+                self.messageBox("API Key and Email saved successfully", "Success", "Information")
             else:
-                Ui().messageBox('Something went wrong!', 'Warning', 'Warning')
+                self.messageBox('Something went wrong!', 'Warning', 'Warning')
         else:
-            Ui().messageBox('Please fill in all fields', 'Warning', 'Warning')
+            self.messageBox('Please fill in all fields', 'Warning', 'Warning')
 
     def replace_run(self):
         old_ip_address = regex.string(self.txtOldIP.text())
@@ -329,6 +346,10 @@ class Ui(QtWidgets.QMainWindow):
 
             if action == self.details_column_action:
                 self.domainDetails()
+
+            if action == self.details_column_dnssec_action:
+                self.domainDNSSEC()
+
         except Exception as e:
             print(e)
             self.messageBox('You must select a valid row!', 'Warning', 'Warning')
