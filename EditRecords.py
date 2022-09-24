@@ -1,5 +1,5 @@
-from PyQt6 import uic, QtWidgets
-from PyQt6.QtWidgets import QDialog
+from PyQt5 import uic
+from PyQt5.QtWidgets import QDialog
 from DB import *
 import cf
 from main import Ui
@@ -136,7 +136,7 @@ class EditRecords(QDialog):
                 if self.IPBlacklist(self.lineEditContent.text()):
                     proxied = False
                 else:
-                    proxied = True
+                    proxied = self.checkBox.isChecked()
             else:
                 proxied = self.checkBox.isChecked()
             data = {

@@ -17,7 +17,7 @@ class UnderAttack(CloudFlareAPI):
                                            record['content'], proxied, security_level['value'])
                     self.update_dns_record(zone_id, record['id'], {'name': record['name'], 'content': record['content'],
                                                                    'type': record['type'], 'proxied': True})
-            self.cf.zones.settings.security_level.patch(zone_id, data={'value': 'under_attack'})
+            self.EditSecurityLevelSettings(zone_id, data={'value': 'under_attack'})
             return True
         except Exception as e:
             print(e)
@@ -36,12 +36,9 @@ class UnderAttack(CloudFlareAPI):
                                        {'name': record['dns_name'], 'content': record['dns_content'],
                                         'type': record['dns_type'], 'proxied': proxied})
                 security_level = record['security_level']
-            self.cf.zones.settings.security_level.patch(zone_id, data={'value': security_level})
+            self.EditSecurityLevelSettings(zone_id, data={'value': security_level})
             db.remove_under_attack(zone_id)
             return True
         except Exception as e:
             print(e)
             return False
-
-    def getSecurityLevel(self, zone_id):
-        return self.cf.zones.settings.security_level.get(zone_id)

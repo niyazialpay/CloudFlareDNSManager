@@ -1,6 +1,6 @@
-from PyQt6 import QtGui, QtWidgets, uic
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QMessageBox
+from PyQt5 import QtGui, QtWidgets, uic
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QMessageBox
 from DB import *
 import cf
 from cf import UnderAttack as ua
@@ -26,6 +26,7 @@ class Ui(QtWidgets.QMainWindow):
         self.details_icon = QtGui.QIcon('Templates/img/details.png')
         self.whois_icon = QtGui.QIcon('Templates/img/whois.png')
         self.dnssec_icon = QtGui.QIcon('Templates/img/dnssec.png')
+        self.settings_icon = QtGui.QIcon('Templates/img/settings.png')
 
         self.menu = QtWidgets.QMenu()
 
@@ -49,8 +50,14 @@ class Ui(QtWidgets.QMainWindow):
         self.details_column_dnssec_action = self.details_menu.addAction("DNSSEC")
         self.details_column_dnssec_action.setIcon(self.dnssec_icon)
 
+        self.details_column_settings_action = self.details_menu.addAction("Settings")
+        self.details_column_settings_action.setIcon(self.settings_icon)
+
         self.delete_details_menu_action = self.details_menu.addAction("Delete")
         self.delete_details_menu_action.setIcon(self.delete_icon)
+
+        if self.__cf.cf is None:
+            self.tabWidget.setCurrentIndex(4)
 
     def setupUi(self):
         self.btnReplace.clicked.connect(self.btnReplace_click)
@@ -176,6 +183,16 @@ class Ui(QtWidgets.QMainWindow):
             self.__db.insert_tmp_data(
                 self.tableWidgetDomainList.item(self.tableWidgetDomainList.currentRow(), 1).text())
         w = DNSSEC()
+        w.exec()
+
+    def showSettings(self, domain_id=None):
+        from settings import Settings
+        if domain_id is not None:
+            self.__db.insert_tmp_data(domain_id)
+        else:
+            self.__db.insert_tmp_data(
+                self.tableWidgetDomainList.item(self.tableWidgetDomainList.currentRow(), 1).text())
+        w = Settings()
         w.exec()
 
     def searchRecord_click(self):
@@ -346,6 +363,9 @@ class Ui(QtWidgets.QMainWindow):
 
             if action == self.details_column_dnssec_action:
                 self.showDNSSEC()
+
+            if action == self.details_column_settings_action:
+                self.showSettings()
         except Exception as e:
             print(e)
             self.messageBox('You must select a valid row!', 'Warning', 'Warning')
