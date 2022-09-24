@@ -27,6 +27,11 @@ class Settings(QDialog):
         self.pushButtonSaveSecurity.clicked.connect(self.saveSecuritySettings)
         self.pushButtonSaveCache.clicked.connect(self.saveCacheSettings)
         self.pushButtonSaveNetwork.clicked.connect(self.saveNetworkSettings)
+        self.pushButtonClearCache.clicked.connect(self.clearCache)
+
+    def clearCache(self):
+        self.cf.purge_cache(self.tmp_data["zone_id"])
+        Ui().messageBox("Cache cleared", "Success", "Information")
 
     def progress(self):
         while self.getSettingsThread.is_alive():

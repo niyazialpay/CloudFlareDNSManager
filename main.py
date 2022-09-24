@@ -116,7 +116,13 @@ class Ui(QtWidgets.QMainWindow):
         self.pushButtonResolverRemove.clicked.connect(self.dnsResolverDelete)
         self.pushButtonResolverAdd.clicked.connect(self.dnsResolverAdd)
 
+        self.btnClearCache.clicked.connect(self.clearCache)
+
         self.show()
+
+    def clearCache(self):
+        self.__cf.purge_cache(self.tableWidgetDomainList.item(self.tableWidgetDomainList.currentRow(), 1).text())
+        self.messageBox("Cache cleared", "Success", "Information")
 
     def btnReplace_click(self):
         threading.Thread(target=self.replace_run).start()
