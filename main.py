@@ -285,7 +285,7 @@ class Ui(QtWidgets.QMainWindow):
                         if old_ip_address == dns['content']:
                             self.textBrowser.append(f"{'-' * len(zone_name)}")
                             cloud_flare.update_dns_record(zone_id, dns['id'],
-                                                          {'content': new_ip_address, 'name': dns['name']})
+                                                          {'content': new_ip_address, 'name': dns['name'], 'type': 'A'})
                             self.textBrowser.append(f"Updated record {dns['name']} to {new_ip_address}")
                             self.textBrowser.append(f"{'-' * len(zone_name)}")
                             cloud_flare.purge_cache(zone['id'])
