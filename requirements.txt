@@ -1,4 +1,4 @@
-cloudflare~=2.10.4
+cloudflare~=2.11.1
 dnspython
 python-whois
 PyQt5~=5.15.9
