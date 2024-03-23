@@ -365,7 +365,7 @@ QTableWidget#tableWidgetPlanetList{
       </font>
      </property>
      <property name="text">
-      <string>Allways use HTTPS</string>
+      <string>Always use HTTPS</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
