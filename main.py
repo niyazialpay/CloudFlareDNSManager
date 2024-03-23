@@ -30,7 +30,7 @@ class Ui(QtWidgets.QMainWindow):
 
         self.menu = QtWidgets.QMenu()
 
-        self.copy_column_action = self.menu.addAction("Copy")
+        self.copy_column_action = self.menu.addAction("Copy to clipboard")
         self.copy_column_action.setIcon(self.copy_icon)
 
         self.edit_column_action = self.menu.addAction("Edit")
